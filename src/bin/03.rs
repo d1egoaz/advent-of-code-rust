@@ -16,7 +16,7 @@ pub fn part_one(input: &str) -> Option<u32> {
 
 fn char_to_priority(c: char) -> u32 {
     let val = c as u32;
-    if c.is_lowercase() {
+    if val >= 97 { // lowercase
         val - 97 + 1
     } else {
         val - 65 + 27
