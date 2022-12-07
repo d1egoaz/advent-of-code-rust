@@ -16,7 +16,8 @@ pub fn part_one(input: &str) -> Option<u32> {
 
 fn char_to_priority(c: char) -> u32 {
     let val = c as u32;
-    if val >= 97 { // lowercase
+    if val >= 97 {
+        // lowercase
         val - 97 + 1
     } else {
         val - 65 + 27
@@ -27,8 +28,7 @@ pub fn part_two(input: &str) -> Option<u32> {
     let x = input
         .split('\n')
         .tuples::<(&str, &str, &str)>()
-        .map(|t| {
-            let (c1, c2, c3) = t;
+        .map(|(c1, c2, c3)| {
             c1.chars()
                 .find(|c1c| {
                     c2.chars()
