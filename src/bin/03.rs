@@ -3,38 +3,38 @@ use itertools::Itertools;
 pub fn part_one(input: &str) -> Option<u32> {
     let x: u32 = input
         .lines()
-        .flat_map(|l| {
+        .map(|l| {
             let (c1, c2) = l.split_at(l.len() / 2);
-            let maybe_char = c1.chars().find(|c1c| c2.chars().any(|c2c| c2c == *c1c));
-            char_to_priority(maybe_char)
+            c1.chars()
+                .find(|c1c| c2.chars().any(|c2c| c2c == *c1c))
+                .map_or(0, char_to_priority)
         })
         .sum();
     // dbg!(x);
     Some(x)
 }
 
-fn char_to_priority(maybe_char: Option<char>) -> Option<u32> {
-    maybe_char.map(|c| {
-        let val = c as u32;
-        if c.is_lowercase() {
-            val - 97 + 1
-        } else {
-            val - 65 + 27
-        }
-    })
+fn char_to_priority(c: char) -> u32 {
+    let val = c as u32;
+    if c.is_lowercase() {
+        val - 97 + 1
+    } else {
+        val - 65 + 27
+    }
 }
 
 pub fn part_two(input: &str) -> Option<u32> {
     let x = input
         .split('\n')
         .tuples::<(&str, &str, &str)>()
-        .flat_map(|t| {
+        .map(|t| {
             let (c1, c2, c3) = t;
-            let maybe_char = c1.chars().find(|c1c| {
-                c2.chars()
-                    .any(|c2c| c3.chars().any(|c3c| c3c == c2c && c3c == *c1c))
-            });
-            char_to_priority(maybe_char)
+            c1.chars()
+                .find(|c1c| {
+                    c2.chars()
+                        .any(|c2c| c3.chars().any(|c3c| c3c == c2c && c3c == *c1c))
+                })
+                .map_or(0, char_to_priority)
         })
         .sum();
     Some(x)
