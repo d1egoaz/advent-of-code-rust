@@ -7,13 +7,7 @@ pub fn part_one(input: &str) -> Option<u32> {
         .flat_map(|l| l.split('-'))
         .map(|s| s.parse::<u32>().unwrap_or(0))
         .tuples::<(u32, u32, u32, u32)>()
-        .map(|(a, b, c, d)| {
-            if (a <= c && b >= d) || (c <= a && d >= b) {
-                1
-            } else {
-                0
-            }
-        })
+        .map(|(a0, a1, b0, b1)| u32::from((a0 <= b0 && a1 >= b1) || (b0 <= a0 && b1 >= a1)))
         .sum();
     // println!("{:?}", x);
 
@@ -27,13 +21,7 @@ pub fn part_two(input: &str) -> Option<u32> {
         .flat_map(|l| l.split('-'))
         .map(|s| s.parse::<u32>().unwrap_or(0))
         .tuples::<(u32, u32, u32, u32)>()
-        .map(|(a, b, c, d)| {
-            if (a <= d && b >= c) || (a >= d && b <= c) {
-                1
-            } else {
-                0
-            }
-        })
+        .map(|(a0, a1, b0, b1)| u32::from((a0 <= b1 && a1 >= b0) || (a0 >= b1 && a1 <= b0)))
         .sum();
 
     Some(x)
