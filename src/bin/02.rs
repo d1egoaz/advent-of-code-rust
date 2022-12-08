@@ -2,8 +2,8 @@ use itertools::Itertools;
 
 pub fn part_one(input: &str) -> Option<u32> {
     let x = input
-        .split("\n")
-        .flat_map(|l| l.split(" "))
+        .split('\n')
+        .flat_map(|l| l.split(' '))
         .filter(|l| !l.is_empty())
         .tuples::<(&str, &str)>()
         .map(|t| match t {
@@ -35,8 +35,8 @@ pub fn part_two(input: &str) -> Option<u32> {
     // Z means you need to win. Good luck!"
 
     let x = input
-        .split("\n")
-        .flat_map(|l| l.split(" "))
+        .split('\n')
+        .flat_map(|l| l.split(' '))
         .filter(|l| !l.is_empty())
         .tuples::<(&str, &str)>()
         .map(|t| match t {

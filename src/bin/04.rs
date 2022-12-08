@@ -8,9 +8,7 @@ pub fn part_one(input: &str) -> Option<u32> {
         .map(|s| s.parse::<u32>().unwrap_or(0))
         .tuples::<(u32, u32, u32, u32)>()
         .map(|(a, b, c, d)| {
-            if a <= c && b >= d {
-                1
-            } else if c <= a && d >= b {
+            if (a <= c && b >= d) || (c <= a && d >= b) {
                 1
             } else {
                 0
@@ -30,9 +28,7 @@ pub fn part_two(input: &str) -> Option<u32> {
         .map(|s| s.parse::<u32>().unwrap_or(0))
         .tuples::<(u32, u32, u32, u32)>()
         .map(|(a, b, c, d)| {
-            if a <= d && b >= c {
-                1
-            } else if a >= d && b <= c {
+            if (a <= d && b >= c) || (a >= d && b <= c) {
                 1
             } else {
                 0
